@@ -37,22 +37,17 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 typedef pcl::PointXYZI PointXYZI;
 
-struct PointXYZIRT
+struct EIGEN_ALIGN16 PointXYZIRT
 {
   PCL_ADD_POINT4D;
   float intensity;
   std::uint16_t ring;
   double timestamp;
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-} EIGEN_ALIGN16;
+};
 
-POINT_CLOUD_REGISTER_POINT_STRUCT(PointXYZIRT, 
-    (float, x, x)
-    (float, y, y)
-    (float, z, z)
-    (float, intensity, intensity)
-    (std::uint16_t, ring, ring)
-    (double, timestamp, timestamp))
+POINT_CLOUD_REGISTER_POINT_STRUCT(PointXYZIRT, (float, x, x)(float, y, y)(float, z, z)(float, intensity, intensity)(
+                                                   std::uint16_t, ring, ring)(double, timestamp, timestamp))
 
 template <typename T_Point>
 class PointCloudT : public pcl::PointCloud<T_Point>
@@ -65,4 +60,3 @@ public:
   uint32_t seq = 0;           ///< Sequence number of message
   std::string frame_id = "";  ///< Point cloud frame id
 };
-
